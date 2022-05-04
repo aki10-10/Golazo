@@ -1,4 +1,5 @@
 Golazo
+
 サイト概要
 サイトテーマ
 チームの募集やブログの投稿・閲覧ができ他の会員をフォローができるサッカー・フットサルを専門とするコミュニティサイト
@@ -10,7 +11,6 @@ Golazo
 ・サッカー・フットサル初心者～経験者
 ・個人参加型フットサル等のチームに興味ある人
 ・個人参加型フットサルを経営している人
-・
 
 主な利用シーン
 ・個人参加型フットサルに参加したい時
@@ -21,8 +21,8 @@ Golazo
 後ほど追加
 
 開発環境
-OS：Linux(CentOS)
-言語：HTML,CSS,JavaScript,Ruby,SQL
-フレームワーク：Ruby on Rails
-JSライブラリ：jQuery
-IDE：Cloud9
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
