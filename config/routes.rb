@@ -25,6 +25,9 @@ Rails.application.routes.draw do
 
 
     resources :users, only: [:index, :show, :edit, :update]
+    
+    resources :photos, only: [:new, :create, :index,:show, :edit, :update,:destroy,] do
+    end  
 
   end
 
