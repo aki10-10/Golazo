@@ -1,0 +1,32 @@
+<div class="container">
+  <h1>会員情報一覧</h1>
+  <div class="row">
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>会員ID</th>
+          <th>名前</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td>
+            <% if user.is_deleted? %>
+              <span>退会</span>
+            <% else %>
+              <sapn>有効</sapn>
+            <% end %>
+          </td>
+          <td><%= link_to '詳細', admin_user_path(user.id) %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

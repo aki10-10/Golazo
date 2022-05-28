@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <h2><%= @user.name %>様の会員情報</h2>
+    <table class="table">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @user.id %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>名前</th>
+        <td><%= @user.name %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @user.email %></td>
+      </tr>
+
+      <tr>
+        <th>会員ステータス </th>
+        <% if @user.is_deleted? %>
+          <th>退会</th>
+        <% else %>
+          <th>有効</th>
+        <% end %>
+      </tr>
+    </table>
+
+  <spam><%= link_to "編集する", edit_admin_user_path(@user), class:"btn btn-success" %></span>
+  </div>
+</div>

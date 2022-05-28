@@ -3,7 +3,13 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-gem 'devise' 
+gem 'carrierwave'
+
+gem 'rmagick'
+
+gem "kaminari"
+
+gem 'devise'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.5'
@@ -64,3 +70,5 @@ gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
+
+gem 'pry-rails'

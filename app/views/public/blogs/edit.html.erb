@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <%= form_with model: @blog,url: public_blog_path, local:true do |f| %>
+      <div class="form-group">
+        <%= f.label :image %>
+        <%= f.file_field :image,class: "form-control-file image", accept: "image/*" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title,placeholder: "(必須)",class: "form-control title" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :TEXT %>
+        <%= f.text_field :body,placeholder: "(必須)",class: "form-control title" %>
+      </div>
+
+       <div class="field">
+        <%= f.label"タグ (,で区切ると複数タグ登録できます)" %>
+        <%= f.text_field :name,value: @tag_list,class:"form-control"%>
+      </div>
+
+　    <div class="actions" style="margin:20px 0;">
+        <%= f.submit "投稿",class:"btn btn-outline-primary btn-block" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+module Public::SeaechTagsHelper
+end

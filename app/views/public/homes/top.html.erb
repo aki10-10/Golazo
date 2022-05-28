@@ -1,2 +1,14 @@
-<h1>TOP</h1>
-<%= link_to 'Guest Log in', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+<div id="aaa" class="container">
+  <%= image_tag 'stadium-g18cafeec8_1920.jpg', class: 'img-fluid' %>
+  <div class="btn-wrapper col-10 mx-auto">
+  <div class="row">
+    <%= link_to 'Log in',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+  </div>
+  <div class="row">
+    <%= link_to 'Sign Up',new_user_registration_path, class: "btn btn-success btn-sm btn-block mb-3 sign_up" %>
+  </div>
+  <div class="row">
+    <%= link_to 'Guest Log in', users_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+  </div>
+  </div>
+</div>

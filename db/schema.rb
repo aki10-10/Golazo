@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_15_043309) do
+ActiveRecord::Schema.define(version: 2022_05_25_034430) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -52,6 +52,16 @@ ActiveRecord::Schema.define(version: 2022_05_15_043309) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "blog_tags", force: :cascade do |t|
+    t.integer "blog_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_id", "tag_id"], name: "index_blog_tags_on_blog_id_and_tag_id", unique: true
+    t.index ["blog_id"], name: "index_blog_tags_on_blog_id"
+    t.index ["tag_id"], name: "index_blog_tags_on_tag_id"
+  end
+
   create_table "blogs", force: :cascade do |t|
     t.string "title"
     t.string "body"
@@ -59,6 +69,24 @@ ActiveRecord::Schema.define(version: 2022_05_15_043309) do
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id", null: false
+    t.integer "blog_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["blog_id"], name: "index_comments_on_blog_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "blog_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "blog_id"], name: "index_favorites_on_user_id_and_blog_id", unique: true
   end
 
   create_table "publics", force: :cascade do |t|
@@ -71,6 +99,19 @@ ActiveRecord::Schema.define(version: 2022_05_15_043309) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_publics_on_email", unique: true
     t.index ["reset_password_token"], name: "index_publics_on_reset_password_token", unique: true
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,4 +132,8 @@ ActiveRecord::Schema.define(version: 2022_05_15_043309) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "blog_tags", "blogs"
+  add_foreign_key "blog_tags", "tags"
+  add_foreign_key "comments", "blogs"
+  add_foreign_key "comments", "users"
 end

@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
+    <div class="col-md-3">
       <h2>ユーザ情報</h2>
       <table class="table">
-        <tr><%= image_tag @user.get_profile_image('100x100') %></tr>            
+        <tr><%= image_tag @user.get_profile_image('100x100') %></tr>
         <tr>
           <th>Name</th>
           <th><%= @user.name %></th>
@@ -15,31 +15,31 @@
         </tr>
         <tr>
           <th>フォロー数</th>
-          <th><%#= linl_to public_user_followings_path(@user) do %>
-                <%#= @user.followings.count %>
-              <%# end %>
+          <th><%= link_to public_user_followings_path(@user) do %>
+                <%= @user.followings.count %>
+              <% end %>
           </th>
         </tr>
         <tr>
           <th>フォロワー数</th>
-          <th><%#= link_to public_user_follwers_path(@user) do %>
-                <%#= @user.follwers.count %>
-              <%# end %>
+          <th><%= link_to public_user_followers_path(@user) do %>
+                <%= @user.followers.count %>
+              <% end %>
           </th>
         </tr>
         <tr>
           <th>いいね一覧</th>
-          <th><%#= link_to favorites_public_user_path(@user) do %>
-                <%#= @user.favorites.count %>                  
-              <%# end %>
+          <th><%= link_to favorites_public_user_path(@user) do %>
+                <%= @user.favorites.count %>
+              <% end %>
           </th>
         </tr>
   <!-- 詳細ページが自分のページであるかで分岐 -->
-    
+
               <% if @user ==  current_user && @user.name != "guestuser" %>
                 <p><%= link_to "プロフィール編集", edit_public_user_path %></p>
               <% else %>
-    
+
   <!-- そうでない場合にフォローボタン-->
               <% if current_user.following?(@user) && @user.name != "guestuser" %>
                 <p><%= link_to "フォロー外す", public_user_relationships_path(@user), method: :delete %></p>
@@ -48,6 +48,36 @@
               <% end %>
               <% end %>
             <% end %>
+        </table>
+      </div>
+      <div class="col-md-8 offset-md-1">
+        <h2>Blog</h2>
+        <table class="table table-hover tabele-inverse">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Text</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @blogs.each do |blog| %>
+            <tr>
+              <td>
+                <%= link_to public_user_path(@user.id) do %>
+                  <%= image_tag @user.get_profile_image("50x50") %>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to blog.title, public_blog_path(blog.id) %>
+              </td>
+              <td>
+                <%= blog.body %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
         </table>
       </div>
     </div>

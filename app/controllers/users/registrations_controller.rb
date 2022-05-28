@@ -4,10 +4,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :ensure_normal_user, only: :edit
   # before_action :check_guest, only: :destroy
 
-
-
+  def ensure_normal_user
+    if resource.email == 'guest@guest.mail'
+      redirect_to public_user_path(@user.id), notice: 'You can not edit guest user'
+    end
+  end  
 
   def after_sign_in_path_for(resource)
     root_path

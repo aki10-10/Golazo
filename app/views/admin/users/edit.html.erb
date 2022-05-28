@@ -1,0 +1,25 @@
+<div class="contaner">
+  <div class="row">
+  <h4><%= @user.name %>様の会員情報</h4>
+    <%= form_with model: @user,url: admin_user_path, local:true do |f| %>
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name,class: "form-control-file name", autofocus: true, id:"inputName", placeholder:"名前"%>
+      </div>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.text_field :email,autofocus: true,class: "form-control introduction" %>
+      </div>
+      <div class="form-group col-xs-9">
+        <%= f.label :会員ステータス %>
+        <%= f.radio_button :is_deleted, false %>
+        <%= f.label :有効 %>
+        <%= f.radio_button :is_deleted, true %>
+        <%= f.label :退会 %>
+      </div>
+      <div class="form-group">
+        <%=f.submit "編集完了"%>
+      </div>
+    <% end %>
+  </div>
+</div>
