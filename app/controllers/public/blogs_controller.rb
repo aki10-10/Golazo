@@ -8,7 +8,7 @@ class Public::BlogsController < ApplicationController
     tag_list = params[:blog][:name].split(',')
     if @blog.save
       @blog.save_tag(tag_list)
-      redirect_to public_blogs_path(@blog),notice:"投稿完了しました:)"
+      redirect_to public_blogs_path(@blog)
     else
       render :new
     end
