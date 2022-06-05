@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root 'public/homes#top'
-  
+
   #ゲストログインの記述
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
@@ -12,9 +12,9 @@ Rails.application.routes.draw do
   #   sessions: "admins/sessions"
   # }
   devise_for :admins, controllers: {
-    sessions:      'users/sessions',
-    passwords:     'users/passwords',
-    registrations: 'users/registrations'
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
   }
 
   devise_for :users, controllers: {
@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
 
   namespace :public do
-    
+
     get 'relationships/followings'
     get 'relationships/followers'
 
@@ -51,12 +51,12 @@ Rails.application.routes.draw do
       resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'
-    end  
+    end
 
     resources :blogs, only: [:new, :create, :index,:show, :edit, :update,:destroy,] do
       resource :favorites, only: [:create,:destroy]
       resources :comments, only: [:create, :destroy]
-    end  
+    end
 
 
   end
