@@ -36,7 +36,7 @@
         </tr>
   <!-- 詳細ページが自分のページであるかで分岐 -->
 
-              <% if @user ==  current_user && @user.name != "guestuser" %>
+              <% if @user.id ==  current_user.id && @user.name != "guestuser" %>
                 <p><%= link_to "プロフィール編集", edit_public_user_path %></p>
               <% else %>
 

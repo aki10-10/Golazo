@@ -1,5 +1,6 @@
 class Public::UsersController < ApplicationController
 
+
   def show
     @user = User.find(params[:id])
     @blogs = @user.blogs
@@ -36,8 +37,12 @@ class Public::UsersController < ApplicationController
     favorites= Favorite.where(user_id: @user.id).pluck(:blog_id)
     @favorite_blogs = Blog.find(favorites)
   end
-
+  
   private
+  def correct_user
+   @user = User.find(params[:id])
+   redirect_to(root_path) unless current_user?(@user)
+  end
 
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
